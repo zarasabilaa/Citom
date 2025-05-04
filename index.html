@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
@@ -10,39 +9,27 @@
 </head>
 <body class="bg-blue-50 text-gray-800">
   <!-- Navbar -->
-<nav class="bg-blue-600 text-white p-4 fixed w-full z-10 top-0 shadow-md">
-  <div class="container mx-auto flex justify-between items-center">
-    <h1 class="text-xl font-bold">CITOM</h1>
-
-    <!-- Menu untuk desktop -->
-    <ul class="hidden md:flex space-x-6">
-      <li><a href="#pesanan" class="hover:text-blue-300">Pesanan</a></li>
-      <li><a href="#home" class="hover:text-blue-300">Home</a></li>
-      <li><a href="#menu" class="hover:text-blue-300">Menu</a></li>
-      <li><a href="#about" class="hover:text-blue-300">About</a></li>
-      <li><a href="#contact" class="hover:text-blue-300">Contact</a></li>
-    </ul>
-
-    <!-- Tombol hamburger -->
-    <button id="menuToggle" class="md:hidden focus:outline-none text-white">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-           viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
-    </button>
-  </div>
-
-  <!-- Menu untuk mobile -->
-  <div id="mobileMenu" class="md:hidden hidden px-4 pt-2 pb-4 bg-blue-700">
-    <ul class="space-y-2">
-      <li><a href="#pesanan" class="block text-white hover:text-blue-300">Pesanan</a></li>
-      <li><a href="#home" class="block text-white hover:text-blue-300">Home</a></li>
-      <li><a href="#menu" class="block text-white hover:text-blue-300">Menu</a></li>
-      <li><a href="#about" class="block text-white hover:text-blue-300">About</a></li>
-      <li><a href="#contact" class="block text-white hover:text-blue-300">Contact</a></li>
-    </ul>
-  </div>
-</nav>
+  <nav class="bg-blue-600 text-white p-4 fixed w-full z-10 top-0 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-xl font-bold">CITOM</h1>
+      <ul class="flex space-x-6">
+        <li><a href="#pesanan" class="hover:text-blue-300">Pesanan</a></li>
+        <li><a href="#home" class="hover:text-blue-300">Home</a></li>
+        <li><a href="#menu" class="hover:text-blue-300">Menu</a></li>
+        <li><a href="#about" class="hover:text-blue-300">About</a></li>
+        <li><a href="#contact" class="hover:text-blue-300">Contact</a></li>
+      </ul>
+      <button id="cartButton" class="relative">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.3h12.1M9 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" />
+        </svg>
+        <span id="cartCount"
+          class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+      </button>
+    </div>
+  </nav>
 
   <!-- Home Section -->
   <section id="home" class="pt-24 pb-20 bg-blue-100 text-center">
@@ -52,72 +39,50 @@
   </section>
 
   <!-- Menu Section -->
-
   <section id="menu" class="py-16 bg-white">
     <h2 class="text-3xl font-bold text-center mb-10">Menu Kami</h2>
     <div class="overflow-x-auto whitespace-nowrap px-6">
+      <!-- Menu items -->
+      <!-- Gunakan loop atau duplikat blok berikut untuk menambah item -->
       <div class="inline-block w-72 mx-4 bg-blue-100 p-4 rounded-xl shadow-md">
         <img src="gambar/9.jpg" alt="Citom Original" class="rounded-lg mb-3">
-        <h3 class="text-xl font-semibold">Nama makanan</h3>
-        <p class="text-blue-700 font-bold">harga</p>
+        <h3 class="text-xl font-semibold">Citom Original</h3>
+        <p class="text-blue-700 font-bold">Rp10.000</p>
         <button class="addToCart mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" data-name="Citom Original" data-price="10000">Pesan</button>
       </div>
-      <div class="inline-block w-72 mx-4 bg-blue-100 p-4 rounded-xl shadow-md">
-        <img src="gambar/8.jpg" alt="Citom Original" class="rounded-lg mb-3">
-        <h3 class="text-xl font-semibold">Nama makanan</h3>
-        <p class="text-blue-700 font-bold">harga</p>
-        <button class="addToCart mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" data-name="Citom Original" data-price="10000">Pesan</button>
-      </div>
-      <div class="inline-block w-72 mx-4 bg-blue-100 p-4 rounded-xl shadow-md">
-        <img src="gambar/7.jpg" alt="Citom Pedas Level 3" class="rounded-lg mb-3">
-        <h3 class="text-xl font-semibold">Nama makanan</h3>
-        <p class="text-blue-700 font-bold">harga</p>
-        <button class="addToCart mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" data-name="Citom Original" data-price="10000">Pesan</button>
-      </div>
-      <div class="inline-block w-72 mx-4 bg-blue-100 p-4 rounded-xl shadow-md">
-        <img src="gambar/5.jpg" alt="Citom Pedas Level 3" class="rounded-lg mb-3">
-        <h3 class="text-xl font-semibold">Nama makanan</h3>
-        <p class="text-blue-700 font-bold">harga</p>
-        <button class="addToCart mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" data-name="Citom Original" data-price="10000">Pesan</button>
-      </div>
-      <div class="inline-block w-72 mx-4 bg-blue-100 p-4 rounded-xl shadow-md">
-        <img src="gambar/4.jpg" alt="Citom Pedas Level 3" class="rounded-lg mb-3">
-        <h3 class="text-xl font-semibold">Nama makanan</h3>
-        <p class="text-blue-700 font-bold">harga</p>
-        <button class="addToCart mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" data-name="Citom Original" data-price="10000">Pesan</button>
-      </div>
+      <!-- Tambahkan lebih banyak div di atas sesuai kebutuhan -->
     </div>
   </section>
 
   <!-- About Section -->
-
   <section id="about" class="py-16 bg-blue-50 text-center">
     <h2 class="text-3xl font-bold mb-4">Tentang CITOM</h2>
     <p class="mb-6 max-w-xl mx-auto">CITOM adalah usaha kuliner lokal yang menyajikan inovasi baru dalam bentuk cilok kuah tomyum. Kami hadir untuk memanjakan lidah Anda dengan cita rasa unik yang belum pernah ada sebelumnya.</p>
     <div class="max-w-2xl mx-auto">
-      <iframe class="w-full h-64 rounded-xl" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.9947615915463!2d112.63055831531888!3d-7.137780594839727!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMDgnMTUuMCJTIDExMsKwMzcnNTguMiJF!5e0!3m2!1sen!2sid!4v1612312312312" allowfullscreen="" loading="lazy"></iframe>
+      <iframe class="w-full h-64 rounded-xl" src="https://www.google.com/maps/embed?..." allowfullscreen="" loading="lazy"></iframe>
     </div>
   </section>
 
   <!-- Contact Section -->
-
   <section id="contact" class="py-16 bg-white text-center">
     <h2 class="text-3xl font-bold mb-4">Kontak Kami</h2>
     <p>Email: <a href="mailto:citomku@gmail.com" class="text-blue-600 font-semibold">citomku@gmail.com</a></p>
     <p>Telepon/WA: <span class="text-blue-600 font-semibold">+62 812-3456-7890</span></p>
   </section>
+
+  <!-- Modal Cart -->
   <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
     <div class="bg-white w-96 p-6 rounded-xl shadow-lg text-left relative">
       <h3 class="text-xl font-bold mb-4">Keranjang Anda</h3>
       <ul id="cartItems" class="mb-4 space-y-2 max-h-60 overflow-y-auto"></ul>
-      <div class="flex justify-between items-center">
+      <div class="flex justify-between items-center mb-2">
         <span class="font-semibold">Total: <span id="cartTotal">0</span> item</span>
-        <a id="checkoutBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 cursor-pointer" target="_blank">Bayar</a>
+        <span id="cartTotalHarga" class="text-sm text-gray-600">Rp0</span>
       </div>
-      <button class="addToCart mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" data-name="Citom Original" data-price="10000">Pesan</button>
+      <a id="checkoutBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 cursor-pointer" target="_blank">Bayar</a>
       <button id="closeCart" class="absolute top-2 right-3 text-gray-600 hover:text-black text-xl">&times;</button>
     </div>
   </div>
-  
 </body>
-</html> 
+
+</html>
