@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CITOM - Cilok Kuah Tomyum</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
   <script src="style.js"></script>
 </head>
 <body class="bg-blue-50 text-gray-800">
@@ -18,16 +19,10 @@
         <li><a href="#menu" class="hover:text-blue-300">Menu</a></li>
         <li><a href="#about" class="hover:text-blue-300">About</a></li>
         <li><a href="#contact" class="hover:text-blue-300">Contact</a></li>
+        <li class="relative">
+          <button id="cartButton">🛒 <span id="cartCount" class="hidden">0</span></button>
+        </li>
       </ul>
-      <button id="cartButton" class="relative">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path
-            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7a1 1 0 00.9 1.3h12.1M9 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" />
-        </svg>
-        <span id="cartCount"
-          class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
-      </button>
     </div>
   </nav>
 
@@ -42,15 +37,13 @@
   <section id="menu" class="py-16 bg-white">
     <h2 class="text-3xl font-bold text-center mb-10">Menu Kami</h2>
     <div class="overflow-x-auto whitespace-nowrap px-6">
-      <!-- Menu items -->
-      <!-- Gunakan loop atau duplikat blok berikut untuk menambah item -->
       <div class="inline-block w-72 mx-4 bg-blue-100 p-4 rounded-xl shadow-md">
         <img src="gambar/9.jpg" alt="Citom Original" class="rounded-lg mb-3">
         <h3 class="text-xl font-semibold">Citom Original</h3>
-        <p class="text-blue-700 font-bold">Rp10.000</p>
+        <p class="text-blue-700 font-bold">Rp 10.000</p>
         <button class="addToCart mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" data-name="Citom Original" data-price="10000">Pesan</button>
       </div>
-      <!-- Tambahkan lebih banyak div di atas sesuai kebutuhan -->
+      <!-- Tambahkan item menu lainnya di sini -->
     </div>
   </section>
 
@@ -59,7 +52,7 @@
     <h2 class="text-3xl font-bold mb-4">Tentang CITOM</h2>
     <p class="mb-6 max-w-xl mx-auto">CITOM adalah usaha kuliner lokal yang menyajikan inovasi baru dalam bentuk cilok kuah tomyum. Kami hadir untuk memanjakan lidah Anda dengan cita rasa unik yang belum pernah ada sebelumnya.</p>
     <div class="max-w-2xl mx-auto">
-      <iframe class="w-full h-64 rounded-xl" src="https://www.google.com/maps/embed?..." allowfullscreen="" loading="lazy"></iframe>
+      <iframe class="w-full h-64 rounded-xl" src="https://www.google.com/maps/embed?..." allowfullscreen loading="lazy"></iframe>
     </div>
   </section>
 
@@ -70,19 +63,17 @@
     <p>Telepon/WA: <span class="text-blue-600 font-semibold">+62 812-3456-7890</span></p>
   </section>
 
-  <!-- Modal Cart -->
+  <!-- Cart Modal -->
   <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
     <div class="bg-white w-96 p-6 rounded-xl shadow-lg text-left relative">
       <h3 class="text-xl font-bold mb-4">Keranjang Anda</h3>
       <ul id="cartItems" class="mb-4 space-y-2 max-h-60 overflow-y-auto"></ul>
-      <div class="flex justify-between items-center mb-2">
+      <div class="flex justify-between items-center">
         <span class="font-semibold">Total: <span id="cartTotal">0</span> item</span>
-        <span id="cartTotalHarga" class="text-sm text-gray-600">Rp0</span>
+        <a id="checkoutBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 cursor-pointer" target="_blank">Bayar</a>
       </div>
-      <a id="checkoutBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 cursor-pointer" target="_blank">Bayar</a>
       <button id="closeCart" class="absolute top-2 right-3 text-gray-600 hover:text-black text-xl">&times;</button>
     </div>
   </div>
 </body>
-
 </html>
