@@ -14,6 +14,7 @@
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-xl font-bold">CITOM</h1>
       <ul class="flex space-x-6">
+        <li><a href="#pesanan" class="hover:text-blue-300">Pesanan</a></li>
         <li><a href="#home" class="hover:text-blue-300">Home</a></li>
         <li><a href="#menu" class="hover:text-blue-300">Menu</a></li>
         <li><a href="#about" class="hover:text-blue-300">About</a></li>
@@ -38,31 +39,31 @@
         <img src="gambar/9.jpg" alt="Citom Original" class="rounded-lg mb-3">
         <h3 class="text-xl font-semibold">Nama makanan</h3>
         <p class="text-blue-700 font-bold">harga</p>
-        <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-orange-700">Pesan</button>
+        <button class="addToCart mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" data-name="Citom Original" data-price="10000">Pesan</button>
       </div>
       <div class="inline-block w-72 mx-4 bg-blue-100 p-4 rounded-xl shadow-md">
         <img src="gambar/8.jpg" alt="Citom Original" class="rounded-lg mb-3">
         <h3 class="text-xl font-semibold">Nama makanan</h3>
         <p class="text-blue-700 font-bold">harga</p>
-        <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-orange-700">Pesan</button>
+        <button class="addToCart mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" data-name="Citom Original" data-price="10000">Pesan</button>
       </div>
       <div class="inline-block w-72 mx-4 bg-blue-100 p-4 rounded-xl shadow-md">
         <img src="gambar/7.jpg" alt="Citom Pedas Level 3" class="rounded-lg mb-3">
         <h3 class="text-xl font-semibold">Nama makanan</h3>
         <p class="text-blue-700 font-bold">harga</p>
-        <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Pesan</button>
+        <button class="addToCart mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" data-name="Citom Original" data-price="10000">Pesan</button>
       </div>
       <div class="inline-block w-72 mx-4 bg-blue-100 p-4 rounded-xl shadow-md">
         <img src="gambar/5.jpg" alt="Citom Pedas Level 3" class="rounded-lg mb-3">
         <h3 class="text-xl font-semibold">Nama makanan</h3>
         <p class="text-blue-700 font-bold">harga</p>
-        <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Pesan</button>
+        <button class="addToCart mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" data-name="Citom Original" data-price="10000">Pesan</button>
       </div>
       <div class="inline-block w-72 mx-4 bg-blue-100 p-4 rounded-xl shadow-md">
         <img src="gambar/4.jpg" alt="Citom Pedas Level 3" class="rounded-lg mb-3">
         <h3 class="text-xl font-semibold">Nama makanan</h3>
         <p class="text-blue-700 font-bold">harga</p>
-        <button class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Pesan</button>
+        <button class="addToCart mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" data-name="Citom Original" data-price="10000">Pesan</button>
       </div>
     </div>
   </section>
@@ -84,5 +85,18 @@
     <p>Email: <a href="mailto:citomku@gmail.com" class="text-blue-600 font-semibold">citomku@gmail.com</a></p>
     <p>Telepon/WA: <span class="text-blue-600 font-semibold">+62 812-3456-7890</span></p>
   </section>
+  <div id="cartModal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+    <div class="bg-white w-96 p-6 rounded-xl shadow-lg text-left relative">
+      <h3 class="text-xl font-bold mb-4">Keranjang Anda</h3>
+      <ul id="cartItems" class="mb-4 space-y-2 max-h-60 overflow-y-auto"></ul>
+      <div class="flex justify-between items-center">
+        <span class="font-semibold">Total: <span id="cartTotal">0</span> item</span>
+        <a id="checkoutBtn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 cursor-pointer" target="_blank">Bayar</a>
+      </div>
+      <button class="addToCart mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" data-name="Citom Original" data-price="10000">Pesan</button>
+      <button id="closeCart" class="absolute top-2 right-3 text-gray-600 hover:text-black text-xl">&times;</button>
+    </div>
+  </div>
+  
 </body>
 </html> 
