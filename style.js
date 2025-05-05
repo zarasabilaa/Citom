@@ -5,6 +5,10 @@ const cart = {};
     const cartTotal = document.getElementById('cartTotal');
     const checkoutBtn = document.getElementById('checkoutBtn');
 
+    document.getElementById("scrollToMenu").addEventListener("click", function () {
+      document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
+    }); 
+
     document.querySelectorAll('.addToCart').forEach(button => {
       button.addEventListener('click', () => {
         const name = button.getAttribute('data-name');
@@ -17,7 +21,7 @@ const cart = {};
         }
         updateCartDisplay();
       });
-    });
+    });   
 
     function updateCartDisplay() {
       cartItemsList.innerHTML = '';
