@@ -97,3 +97,4 @@ document.getElementById('closeCart').addEventListener('click', () => {
 });
 
 
+
