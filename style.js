@@ -96,5 +96,19 @@ document.getElementById('closeCart').addEventListener('click', () => {
   cartModal.classList.add('hidden');
 });
 
-
+document.getElementById("whatsappForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var message = document.getElementById("message").value;
+  var phoneNumber = "+6281463918825"; 
+  
+  var whatsappURL = "https://wa.me/+6281463918825" + phoneNumber + "?text=" +
+      "Nama: " + encodeURIComponent(name) + "%0A" +
+      "Email: " + encodeURIComponent(email) + "%0A" +
+      "Pesan: " + encodeURIComponent(message);
+  
+  window.open(whatsappURL, "_blank");
+});
 
