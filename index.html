@@ -105,11 +105,23 @@
       <button id="closeCart" class="absolute top-2 right-3 text-gray-600 hover:text-black text-xl">&times;</button>
     </div>
   </div>
-  <script src="style.js"></script>
+  <section id="review" class="py-16 bg-white text-center">
+    <h2 class="text-3xl font-bold mb-4">Review</h2>
+    <form id="reviewForm" class="max-w-lg mx-auto mb-8">
+      <input type="text" id="reviewName" placeholder="Nama Anda" class="w-full p-2 mb-4 border border-gray-300 rounded">
+      <textarea id="reviewMessage" placeholder="Tulis ulasan Anda..." class="w-full p-2 mb-4 border border-gray-300 rounded"></textarea>
+      <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Kirim Ulasan</button>
+    </form>
+    <div id="reviewList" class="max-w-lg mx-auto space-y-4">
+      <!-- Review akan ditampilkan di sini -->
+    </div>
+  </section>
 
   <footer class="text-center py-3" style="background-color: rgb(56, 102, 230);">
     <p> &copy; 2025 citom</p>
 </footer>
+
+<script src="style.js"></script>
 
 </body>
 </html>
