@@ -61,8 +61,8 @@ function updateCartDisplay() {
   cartCount.classList.toggle('hidden', totalQty === 0);
   cartTotal.textContent = `Rp${totalPrice.toLocaleString('id-ID')}`;
 
-  const waNumber = '6281234567890';
-  checkoutBtn.href = `https://wa.me/${waNumber}?text=Halo%2C%20saya%20ingin%20memesan%3A%0A${waMessage.join('%0A')}`;
+  const waNumber = '+6282123339954';
+  checkoutBtn.href = `https://wa.me/${+6282123339954}?text=Halo%2C%20saya%20ingin%20memesan%3A%0A${waMessage.join('%0A')}`;
 
   // Tambah event listener untuk tombol + dan -
   document.querySelectorAll('.decreaseQty').forEach(button => {
