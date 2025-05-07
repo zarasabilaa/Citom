@@ -5,6 +5,7 @@ const cartItemsList = document.getElementById('cartItems');
 const cartTotal = document.getElementById('cartTotal');
 const checkoutBtn = document.getElementById('checkoutBtn');
 
+
 // Scroll to menu
 document.getElementById("scrollToMenu").addEventListener("click", () => {
   document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
@@ -94,3 +95,5 @@ document.getElementById('cartButton').addEventListener('click', () => {
 document.getElementById('closeCart').addEventListener('click', () => {
   cartModal.classList.add('hidden');
 });
+
+
