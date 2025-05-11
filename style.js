@@ -1,17 +1,27 @@
+// =============================
+// Global Variables
+// =============================
 const cart = {};
 const cartCount = document.getElementById('cartCount');
 const cartModal = document.getElementById('cartModal');
 const cartItemsList = document.getElementById('cartItems');
 const cartTotal = document.getElementById('cartTotal');
 const checkoutBtn = document.getElementById('checkoutBtn');
+const searchInput = document.getElementById('searchInput');
+const form = document.getElementById('whatsappForm');
+const reviewList = document.getElementById('reviewList').querySelector('ul');
 
-
-// Scroll to menu
+// =============================
+// Smooth Scroll to Menu Section
+// =============================
 document.getElementById("scrollToMenu").addEventListener("click", () => {
   document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
 });
 
-// Tambah item ke keranjang
+// =============================
+// Shopping Cart Functions
+// =============================
+// Add item to the cart
 document.querySelectorAll('.addToCart').forEach(button => {
   button.addEventListener('click', () => {
     const name = button.getAttribute('data-name');
@@ -27,20 +37,19 @@ document.querySelectorAll('.addToCart').forEach(button => {
   });
 });
 
-// Tampilkan keranjang
+// Update Cart Display
 function updateCartDisplay() {
   cartItemsList.innerHTML = '';
   let totalQty = 0;
   let totalPrice = 0;
   let waMessage = [];
 
-  for (const name in cart) {
+  Object.keys(cart).forEach(name => {
     const item = cart[name];
     const subtotal = item.price * item.qty;
 
     totalQty += item.qty;
     totalPrice += subtotal;
-
     waMessage.push(`• ${name} x${item.qty} - Rp${subtotal.toLocaleString('id-ID')}`);
 
     const li = document.createElement('li');
@@ -56,66 +65,16 @@ function updateCartDisplay() {
       </div>
     `;
     cartItemsList.appendChild(li);
-  }
+  });
 
   cartCount.textContent = totalQty;
   cartCount.classList.toggle('hidden', totalQty === 0);
   cartTotal.textContent = `Rp${totalPrice.toLocaleString('id-ID')}`;
-
-  const waNumber = '+6282123339954';
-  checkoutBtn.href = `https://wa.me/${+6282123339954}?text=Halo%2C%20saya%20ingin%20memesan%3A%0A${waMessage.join('%0A')}`;
-
-  // Tambah event listener untuk tombol + dan -
-  document.querySelectorAll('.decreaseQty').forEach(button => {
-    button.addEventListener('click', () => {
-      const name = button.getAttribute('data-name');
-      if (cart[name].qty > 1) {
-        cart[name].qty -= 1;
-      } else {
-        delete cart[name];
-      }
-      updateCartDisplay();
-    });
-  });
-
-  document.querySelectorAll('.increaseQty').forEach(button => {
-    button.addEventListener('click', () => {
-      const name = button.getAttribute('data-name');
-      cart[name].qty += 1;
-      updateCartDisplay();
-    });
-  });
 }
 
-// Tampilkan dan sembunyikan modal keranjang
-document.getElementById('cartButton').addEventListener('click', () => {
-  cartModal.classList.remove('hidden');
-});
-
-document.getElementById('closeCart').addEventListener('click', () => {
-  cartModal.classList.add('hidden');
-});
-
-document.getElementById("whatsappForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-  
-  var name = document.getElementById("name").value;
-  var email = document.getElementById("email").value;
-  var message = document.getElementById("message").value;
-  var phoneNumber = "+6281463918825"; 
-  
-  var whatsappURL = "https://wa.me/+6281463918825" + phoneNumber + "?text=" +
-      "Nama: " + encodeURIComponent(name) + "%0A" +
-      "Email: " + encodeURIComponent(email) + "%0A" +
-      "Pesan: " + encodeURIComponent(message);
-  
-  window.open(whatsappURL, "_blank");
-});
-
-const form = document.getElementById('whatsappForm');
-const reviewList = document.getElementById('reviewList').querySelector('ul');
-const searchInput = document.getElementById('searchInput');
-
+// =============================
+// Add Review to List Only
+// =============================
 // Load from LocalStorage
 window.onload = () => {
     const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
@@ -181,4 +140,3 @@ searchInput.addEventListener('input', function(event) {
         item.style.display = name.includes(filter) ? '' : 'none';
     });
 });
-
