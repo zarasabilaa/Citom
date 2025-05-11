@@ -112,3 +112,73 @@ document.getElementById("whatsappForm").addEventListener("submit", function(even
   window.open(whatsappURL, "_blank");
 });
 
+const form = document.getElementById('whatsappForm');
+const reviewList = document.getElementById('reviewList').querySelector('ul');
+const searchInput = document.getElementById('searchInput');
+
+// Load from LocalStorage
+window.onload = () => {
+    const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+    savedReviews.forEach(addReviewToList);
+};
+
+// Add Review
+form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    const reviewData = { name, email, message };
+    addReviewToList(reviewData);
+    
+    // Save to LocalStorage
+    const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+    savedReviews.push(reviewData);
+    localStorage.setItem('reviews', JSON.stringify(savedReviews));
+
+    form.reset();
+});
+
+// Add Review to List
+function addReviewToList({ name, email, message }) {
+    const listItem = document.createElement('li');
+    listItem.classList.add('bg-white', 'p-4', 'rounded-lg', 'shadow-md');
+    listItem.innerHTML = `
+        <div class="flex justify-between">
+            <div>
+                <p class="font-bold text-lg">${name} (${email})</p>
+                <p class="text-gray-700">${message}</p>
+            </div>
+            <button class="text-red-500 font-bold" onclick="removeReview(this)">Hapus</button>
+        </div>
+    `;
+    reviewList.appendChild(listItem);
+}
+
+// Remove Review
+function removeReview(button) {
+    const listItem = button.parentElement.parentElement;
+    const name = listItem.querySelector('p.font-bold').innerText.split(" ")[0];
+
+    // Remove from LocalStorage
+    let savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+    savedReviews = savedReviews.filter(review => review.name !== name);
+    localStorage.setItem('reviews', JSON.stringify(savedReviews));
+
+    // Remove from UI
+    listItem.remove();
+}
+
+// Search Filter
+searchInput.addEventListener('input', function(event) {
+    const filter = event.target.value.toLowerCase();
+    const listItems = reviewList.querySelectorAll('li');
+    
+    listItems.forEach(item => {
+        const name = item.querySelector('p.font-bold').innerText.toLowerCase();
+        item.style.display = name.includes(filter) ? '' : 'none';
+    });
+});
+
