@@ -120,26 +120,115 @@
         </div>
     </div>
     
-    <!-- Contact Form -->
-    <div class="md:w-1/2 p-6">
-      <h2 class="text-4xl font-bold mb-6">Review</h2>
-      <form id="whatsappForm" class="w-full bg-blue-200 p-6 rounded-lg">
-          <div class="mb-4">
-              <label for="name" class="block text-left text-black mb-2">Nama</label>
-              <input type="text" id="name" class="w-full p-2 rounded bg-white-200 text-black" placeholder="Nama" required>
-          </div>
-          <div class="mb-4">
-              <label for="email" class="block text-left text-black mb-2">Email</label>
-              <input type="email" id="email" class="w-full p-2 rounded bg-white-200 text-black" placeholder="Email" required>
-          </div>
-          <div class="mb-4">
-              <label for="message" class="block text-left text-black mb-2">Review</label>
-              <textarea id="message" class="w-full p-2 rounded bg-white-200 text-black" placeholder="Berikan ulasan....." required></textarea>
-          </div>
-          <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-full font-semibold">Send</button>
-      </form>
-  </div>
-  
+    ""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Review List</title>
+</head>
+<body class="bg-gray-100 p-10">
+    <div class="md:w-1/2 p-6 mx-auto">
+        <h2 class="text-4xl font-bold mb-6">Review</h2>
+        <form id="whatsappForm" class="w-full bg-blue-200 p-6 rounded-lg">
+            <div class="mb-4">
+                <label for="name" class="block text-left text-black mb-2">Nama</label>
+                <input type="text" id="name" class="w-full p-2 rounded bg-white-200 text-black" placeholder="Nama" required>
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-left text-black mb-2">Email</label>
+                <input type="email" id="email" class="w-full p-2 rounded bg-white-200 text-black" placeholder="Email" required>
+            </div>
+            <div class="mb-4">
+                <label for="message" class="block text-left text-black mb-2">Review</label>
+                <textarea id="message" class="w-full p-2 rounded bg-white-200 text-black" placeholder="Berikan ulasan....." required></textarea>
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-full font-semibold">Kirim</button>
+        </form>
+
+        <!-- Search Bar -->
+        <input type="text" id="searchInput" placeholder="Cari review..." class="w-full p-2 mt-6 mb-4 rounded bg-gray-200 text-black">
+
+        <!-- Review List -->
+        <div id="reviewList" class="mt-6">
+            <h3 class="text-2xl font-semibold mb-4">Daftar Review:</h3>
+            <ul class="space-y-4"></ul>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('whatsappForm');
+        const reviewList = document.getElementById('reviewList').querySelector('ul');
+        const searchInput = document.getElementById('searchInput');
+
+        // Load from LocalStorage
+        window.onload = () => {
+            const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+            savedReviews.forEach(addReviewToList);
+        };
+
+        // Add Review
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            const reviewData = { name, email, message };
+            addReviewToList(reviewData);
+            
+            // Save to LocalStorage
+            const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+            savedReviews.push(reviewData);
+            localStorage.setItem('reviews', JSON.stringify(savedReviews));
+
+            form.reset();
+        });
+
+        // Add Review to List
+        function addReviewToList({ name, email, message }) {
+            const listItem = document.createElement('li');
+            listItem.classList.add('bg-white', 'p-4', 'rounded-lg', 'shadow-md');
+            listItem.innerHTML = `
+                <div class="flex justify-between">
+                    <div>
+                        <p class="font-bold text-lg">${name} (${email})</p>
+                        <p class="text-gray-700">${message}</p>
+                    </div>
+                    <button class="text-red-500 font-bold" onclick="removeReview(this)">Hapus</button>
+                </div>
+            `;
+            reviewList.appendChild(listItem);
+        }
+
+        // Remove Review
+        function removeReview(button) {
+            const listItem = button.parentElement.parentElement;
+            const name = listItem.querySelector('p.font-bold').innerText.split(" ")[0];
+
+            // Remove from LocalStorage
+            let savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+            savedReviews = savedReviews.filter(review => review.name !== name);
+            localStorage.setItem('reviews', JSON.stringify(savedReviews));
+
+            // Remove from UI
+            listItem.remove();
+        }
+
+        // Search Filter
+        searchInput.addEventListener('input', function(event) {
+            const filter = event.target.value.toLowerCase();
+            const listItems = reviewList.querySelectorAll('li');
+            
+            listItems.forEach(item => {
+                const name = item.querySelector('p.font-bold').innerText.toLowerCase();
+                item.style.display = name.includes(filter) ? '' : 'none';
+            });
+        });
+    </script>
+
 </section>
 
 
