@@ -1,6 +1,7 @@
 // =============================
 // Global Variables
 // =============================
+
 const cart = {};
 const cartCount = document.getElementById('cartCount');
 const cartModal = document.getElementById('cartModal');
@@ -14,6 +15,7 @@ const reviewList = document.getElementById('reviewList').querySelector('ul');
 // =============================
 // Smooth Scroll to Menu Section
 // =============================
+
 document.getElementById("scrollToMenu").addEventListener("click", () => {
   document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
 });
@@ -81,6 +83,7 @@ window.onload = () => {
     savedReviews.forEach(addReviewToList);
 };
 
+
 // Add Review
 form.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -100,6 +103,7 @@ form.addEventListener('submit', function(event) {
     form.reset();
 });
 
+
 // Add Review to List
 function addReviewToList({ name, email, message }) {
     const listItem = document.createElement('li');
@@ -116,6 +120,7 @@ function addReviewToList({ name, email, message }) {
     reviewList.appendChild(listItem);
 }
 
+
 // Remove Review
 function removeReview(button) {
     const listItem = button.parentElement.parentElement;
@@ -129,6 +134,7 @@ function removeReview(button) {
     // Remove from UI
     listItem.remove();
 }
+
 
 // Search Filter
 searchInput.addEventListener('input', function(event) {
