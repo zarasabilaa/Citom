@@ -114,7 +114,6 @@ function addReviewToList({ name, email, message }) {
                 <p class="font-bold text-lg">${name} (${email})</p>
                 <p class="text-gray-700">${message}</p>
             </div>
-            <button class="text-red-500 font-bold" onclick="removeReview(this)">Hapus</button>
         </div>
     `;
     reviewList.appendChild(listItem);
