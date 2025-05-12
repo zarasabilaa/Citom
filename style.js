@@ -145,3 +145,17 @@ searchInput.addEventListener('input', function(event) {
         item.style.display = name.includes(filter) ? '' : 'none';
     });
 });
+
+
+  function toggleDescription() {
+    const moreText = document.getElementById('moreText');
+    if (moreText.classList.contains('hidden')) {
+      moreText.classList.remove('hidden');
+      moreText.style.maxHeight = moreText.scrollHeight + 'px';
+      event.target.innerText = 'Tutup';
+    } else {
+      moreText.style.maxHeight = '0';
+      setTimeout(() => moreText.classList.add('hidden'), 300);
+      event.target.innerText = 'Baca Selengkapnya';
+    }
+  }
