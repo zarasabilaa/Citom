@@ -12,6 +12,7 @@ const searchInput = document.getElementById('searchInput');
 const form = document.getElementById('whatsappForm');
 const reviewList = document.getElementById('reviewList').querySelector('ul');
 
+
 // =============================
 // Smooth Scroll to Menu Section
 // =============================
@@ -147,6 +148,7 @@ searchInput.addEventListener('input', function(event) {
 });
 
 
+// Baca Selengkapnya
   function toggleDescription() {
     const moreText = document.getElementById('moreText');
     if (moreText.classList.contains('hidden')) {
