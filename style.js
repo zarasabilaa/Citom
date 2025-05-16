@@ -10,6 +10,13 @@ const cartItemsList = document.getElementById('cartItems');
 const cartTotal = document.getElementById('cartTotal');
 const checkoutBtn = document.getElementById('checkoutBtn');
 
+
+// Daftar harga untuk validasi
+const priceList = {
+  'Ayam Bakar': 25000,
+  'Nasi Goreng': 20000,
+  'Es Teh Manis': 5000
+};
 // =============================
 // Event Listener untuk Modal
 // =============================
