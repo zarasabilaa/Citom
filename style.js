@@ -1,22 +1,29 @@
 // =============================
-// Global Variables
+// Inisialisasi Variabel
 // =============================
-
 const cart = {};
+const cartButton = document.getElementById('cartButton');
+const closeCartButton = document.getElementById('closeCart');
 const cartCount = document.getElementById('cartCount');
 const cartModal = document.getElementById('cartModal');
 const cartItemsList = document.getElementById('cartItems');
 const cartTotal = document.getElementById('cartTotal');
 const checkoutBtn = document.getElementById('checkoutBtn');
-const searchInput = document.getElementById('searchInput');
-const form = document.getElementById('whatsappForm');
-const reviewList = document.getElementById('reviewList').querySelector('ul');
 
+// =============================
+// Event Listener untuk Modal
+// =============================
+cartButton.addEventListener('click', () => {
+  cartModal.classList.remove('hidden');
+});
+
+closeCartButton.addEventListener('click', () => {
+  cartModal.classList.add('hidden');
+});
 
 // =============================
 // Smooth Scroll to Menu Section
 // =============================
-
 document.getElementById("scrollToMenu").addEventListener("click", () => {
   document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
 });
@@ -40,7 +47,9 @@ document.querySelectorAll('.addToCart').forEach(button => {
   });
 });
 
+// =============================
 // Update Cart Display
+// =============================
 function updateCartDisplay() {
   cartItemsList.innerHTML = '';
   let totalQty = 0;
@@ -62,88 +71,40 @@ function updateCartDisplay() {
         <span class="font-semibold">${name}</span><br>
         <span class="text-sm text-gray-600">Rp${item.price.toLocaleString('id-ID')} x ${item.qty}</span>
       </div>
-      <div class="flex space-x-2 items-center">
-        <button class="decreaseQty bg-yellow-400 text-white w-6 h-6 rounded" data-name="${name}">-</button>
-        <button class="increaseQty bg-green-500 text-white w-6 h-6 rounded" data-name="${name}">+</button>
+      <div class='flex space-x-2 items-center'>
+        <button class='decreaseQty bg-yellow-400 text-white w-6 h-6 rounded' data-name='${name}'>-</button>
+        <button class='increaseQty bg-green-500 text-white w-6 h-6 rounded' data-name='${name}'>+</button>
       </div>
     `;
+
+    // Event listener for buttons
+    li.querySelector('.decreaseQty').addEventListener('click', () => {
+      if (cart[name].qty > 1) {
+        cart[name].qty -= 1;
+      } else {
+        delete cart[name];
+      }
+      updateCartDisplay();
+    });
+
+    li.querySelector('.increaseQty').addEventListener('click', () => {
+      cart[name].qty += 1;
+      updateCartDisplay();
+    });
+
     cartItemsList.appendChild(li);
   });
 
   cartCount.textContent = totalQty;
   cartCount.classList.toggle('hidden', totalQty === 0);
   cartTotal.textContent = `Rp${totalPrice.toLocaleString('id-ID')}`;
+
+  // =============================
+  // Checkout Button WhatsApp
+  // =============================
+  const phoneNumber = '628123456789'; // Ganti dengan nomor WhatsApp kamu
+  const message = `Halo, saya ingin memesan:\n\n${waMessage.join('\n')}\n\nTotal: Rp${totalPrice.toLocaleString('id-ID')}`;
+  const encodedMessage = encodeURIComponent(message);
+  checkoutBtn.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+  checkoutBtn.target = "_blank";
 }
-
-// =============================
-// Add Review to List Only
-// =============================
-// Load from LocalStorage
-window.onload = () => {
-    const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-    savedReviews.forEach(addReviewToList);
-};
-
-
-// Add Review
-form.addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-
-    const reviewData = { name, email, message };
-    addReviewToList(reviewData);
-    
-    // Save to LocalStorage
-    const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-    savedReviews.push(reviewData);
-    localStorage.setItem('reviews', JSON.stringify(savedReviews));
-
-    form.reset();
-});
-
-
-// Add Review to List
-function addReviewToList({ name, email, message }) {
-    const listItem = document.createElement('li');
-    listItem.classList.add('bg-white', 'p-4', 'rounded-lg', 'shadow-md');
-    listItem.innerHTML = `
-        <div class="flex justify-between">
-            <div>
-                <p class="font-bold text-lg">${name} (${email})</p>
-                <p class="text-gray-700">${message}</p>
-            </div>
-        </div>
-    `;
-    reviewList.appendChild(listItem);
-}
-
-
-// Remove Review
-function removeReview(button) {
-    const listItem = button.parentElement.parentElement;
-    const name = listItem.querySelector('p.font-bold').innerText.split(" ")[0];
-
-    // Remove from LocalStorage
-    let savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-    savedReviews = savedReviews.filter(review => review.name !== name);
-    localStorage.setItem('reviews', JSON.stringify(savedReviews));
-
-    // Remove from UI
-    listItem.remove();
-}
-
-
-// Search Filter
-searchInput.addEventListener('input', function(event) {
-    const filter = event.target.value.toLowerCase();
-    const listItems = reviewList.querySelectorAll('li');
-    
-    listItems.forEach(item => {
-        const name = item.querySelector('p.font-bold').innerText.toLowerCase();
-        item.style.display = name.includes(filter) ? '' : 'none';
-    });
-});
-
