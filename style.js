@@ -147,17 +147,3 @@ searchInput.addEventListener('input', function(event) {
     });
 });
 
-
-// Baca Selengkapnya
-  function toggleDescription() {
-    const moreText = document.getElementById('moreText');
-    if (moreText.classList.contains('hidden')) {
-      moreText.classList.remove('hidden');
-      moreText.style.maxHeight = moreText.scrollHeight + 'px';
-      event.target.innerText = 'Tutup';
-    } else {
-      moreText.style.maxHeight = '0';
-      setTimeout(() => moreText.classList.add('hidden'), 300);
-      event.target.innerText = 'Baca Selengkapnya';
-    }
-  }
