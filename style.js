@@ -115,3 +115,38 @@ function updateCartDisplay() {
   checkoutBtn.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
   checkoutBtn.target = "_blank";
 }
+
+// Form submission handler
+    document.getElementById('whatsappForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        
+        // Ambil nilai dari input
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        // Buat elemen baru untuk review
+        const listItem = document.createElement('li');
+        listItem.classList.add('bg-gray-100', 'p-4', 'rounded', 'shadow');
+        listItem.innerHTML = `
+            <h4 class="text-lg font-bold">${name} (<span class="text-blue-500">${email}</span>)</h4>
+            <p class="text-gray-700 mt-2">${message}</p>
+        `;
+
+        // Masukkan elemen ke dalam list
+        document.getElementById('reviewItems').prepend(listItem);
+
+        // Bersihkan form
+        document.getElementById('whatsappForm').reset();
+    });
+
+    // Filter pencarian
+    document.getElementById('searchInput').addEventListener('input', function () {
+        const filter = this.value.toLowerCase();
+        const items = document.querySelectorAll('#reviewItems li');
+
+        items.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            item.style.display = text.includes(filter) ? '' : 'none';
+        });
+    });
