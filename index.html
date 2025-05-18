@@ -158,20 +158,26 @@
         </form>
     </div>
 
+    <!-- Notifikasi Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow hidden">
+        Review berhasil ditambahkan!
+    </div>
+
     <!-- Review List -->
     <div class="w-full md:w-2/3 lg:w-1/2 p-6 bg-white rounded-lg shadow">
-        <input type="text" id="searchInput" placeholder="Cari review..." class="w-full p-2 mb-4 rounded bg-gray-200 text-black">
-        
-        <div id="reviewList">
+      <div id="reviewList">
             <h3 class="text-2xl font-semibold mb-4">Daftar Review:</h3>
             <ul class="space-y-4"></ul>
         </div>
+        <input type="text" id="searchInput" placeholder="Cari review..." class="w-full p-2 mb-4 rounded bg-gray-200 text-black">
     </div>
+    
 </section>
 
   <footer class="text-center py-3" style="background-color: rgb(56, 102, 230);">
     <p> &copy; 2025 citom</p>
 </footer>
+
 
 <script src="style.js"></script>
 

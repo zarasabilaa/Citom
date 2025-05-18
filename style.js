@@ -3,7 +3,8 @@
     const closeCartButton = document.getElementById('closeCart');
     const cartCount = document.getElementById('cartCount');
     const cartModal = document.getElementById('cartModal');
-    const reviewItemsList = document.getElementById('reviewItems');
+    const reviewList = document.getElementById('reviewList');
+    const toast = document.getElementById('toast');
     const cartTotal = document.getElementById('cartTotal');
     const checkoutBtn = document.getElementById('checkoutBtn');
     const phoneNumber = '628123456789'; // Nomor WhatsApp tujuan
@@ -115,61 +116,56 @@
     }
 
     
-     // Event Listener untuk form submit
-    document.getElementById('whatsappForm').addEventListener('submit', function (event) {
-        event.preventDefault();
 
-        // Ambil nilai input dari form
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
+        // ===========================
+        // Event Listener Form Submit
+        // ===========================
+        document.getElementById('whatsappForm').addEventListener('submit', function (event) {
+            event.preventDefault();
 
-        // Buat elemen baru untuk ulasan
-        const listItem = document.createElement('li');
-        listItem.classList.add('bg-gray-100', 'p-4', 'rounded', 'shadow', 'animate-fade-in');
-        listItem.innerHTML = `
-            <h4 class="text-lg font-bold">${name} (<span class="text-blue-500">${email}</span>)</h4>
-            <p class="text-gray-700 mt-2">${message}</p>
-        `;
+            // Ambil nilai input
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
 
-        // Masukkan elemen baru ke dalam list
-        reviewItemsList.prepend(listItem);
+            // Buat elemen list baru
+            const listItem = document.createElement('li');
+            listItem.classList.add('bg-gray-100', 'p-4', 'rounded', 'shadow', 'animate-fade-in');
+            listItem.innerHTML = `
+                <h4 class="text-lg font-bold">${name} (<span class="text-blue-500">${email}</span>)</h4>
+                <p class="text-gray-700 mt-2">${message}</p>
+            `;
 
-        // Bersihkan form setelah submit
-        document.getElementById('whatsappForm').reset();
+            // Masukkan ke dalam ulasan
+            reviewList.prepend(listItem);
 
-        // Tampilkan notifikasi sukses
-        showToast('Review berhasil ditambahkan');
-    });
+            // Bersihkan form
+            document.getElementById('whatsappForm').reset();
 
-    /* ===========================
-        Fungsi Toast Notification
-    =========================== */
-    function showToast(message) {
-        const toast = document.createElement('div');
-        toast.className = 'fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow animate-toast';
-        toast.textContent = message;
-        
-        document.body.appendChild(toast);
-
-        // Hapus toast setelah 3 detik
-        setTimeout(() => {
-            toast.classList.add('animate-toast-out');
-            setTimeout(() => {
-                toast.remove();
-            }, 500);
-        }, 3000);
-    }
-
-    /* ===========================
-        Filter Pencarian Review
-    =========================== */
-    document.getElementById('searchInput').addEventListener('input', function () {
-        const filter = this.value.toLowerCase();
-        const items = document.querySelectorAll('#reviewList ul li');
-
-        items.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            item.style.display = text.includes(filter) ? '' : 'none';
+            // Tampilkan notifikasi
+            showToast("Review berhasil ditambahkan!");
         });
-    });
+
+        // ===========================
+        // Fungsi Tampilkan Notifikasi
+        // ===========================
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // ===========================
+        // Pencarian Ulasan
+        // ===========================
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const filter = this.value.toLowerCase();
+            const items = document.querySelectorAll('#reviewList li');
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(filter) ? '' : 'none';
+            });
+        });
