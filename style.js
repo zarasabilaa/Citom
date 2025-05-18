@@ -114,32 +114,32 @@
         checkoutBtn.target = "_blank";
     }
 
-    /* ===========================
-        Fungsi Form Review
-    =========================== */
+     // Event Listener untuk form submit
     document.getElementById('whatsappForm').addEventListener('submit', function (event) {
         event.preventDefault();
 
-        // Ambil nilai input
+        // Ambil nilai input dari form
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const message = document.getElementById('message').value;
 
-        // Buat elemen list baru
+        // Buat elemen baru untuk ulasan
         const listItem = document.createElement('li');
-        listItem.classList.add('bg-gray-100', 'p-4', 'rounded', 'shadow');
+        listItem.classList.add('bg-gray-100', 'p-4', 'rounded', 'shadow', 'animate-fade-in');
         listItem.innerHTML = `
             <h4 class="text-lg font-bold">${name} (<span class="text-blue-500">${email}</span>)</h4>
             <p class="text-gray-700 mt-2">${message}</p>
         `;
 
-        // Masukkan ke dalam list
-        document.getElementById('reviewItems').prepend(listItem);
+        // Masukkan elemen baru ke dalam list
+        reviewItemsList.prepend(listItem);
+
+        // Bersihkan form setelah submit
         document.getElementById('whatsappForm').reset();
     });
 
     /* ===========================
-        Fungsi Pencarian Review
+        Filter Pencarian Review
     =========================== */
     document.getElementById('searchInput').addEventListener('input', function () {
         const filter = this.value.toLowerCase();
