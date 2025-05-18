@@ -3,7 +3,7 @@
     const closeCartButton = document.getElementById('closeCart');
     const cartCount = document.getElementById('cartCount');
     const cartModal = document.getElementById('cartModal');
-    const cartItemsList = document.getElementById('cartItems');
+    const reviewItemsList = document.getElementById('reviewItems');
     const cartTotal = document.getElementById('cartTotal');
     const checkoutBtn = document.getElementById('checkoutBtn');
     const phoneNumber = '628123456789'; // Nomor WhatsApp tujuan
@@ -114,7 +114,8 @@
         checkoutBtn.target = "_blank";
     }
 
-     // Event Listener untuk form submit
+    
+    // Event Listener untuk form submit
     document.getElementById('whatsappForm').addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -136,7 +137,29 @@
 
         // Bersihkan form setelah submit
         document.getElementById('whatsappForm').reset();
+
+        // Tampilkan notifikasi sukses
+        showToast('Review berhasil ditambahkan');
     });
+
+    /* ===========================
+        Fungsi Toast Notification
+    =========================== */
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.className = 'fixed bottom-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow animate-toast';
+        toast.textContent = message;
+        
+        document.body.appendChild(toast);
+
+        // Hapus toast setelah 3 detik
+        setTimeout(() => {
+            toast.classList.add('animate-toast-out');
+            setTimeout(() => {
+                toast.remove();
+            }, 500);
+        }, 3000);
+    }
 
     /* ===========================
         Filter Pencarian Review
@@ -150,4 +173,3 @@
             item.style.display = text.includes(filter) ? '' : 'none';
         });
     });
-
