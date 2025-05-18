@@ -115,7 +115,7 @@
     }
 
     
-    // Event Listener untuk form submit
+     // Event Listener untuk form submit
     document.getElementById('whatsappForm').addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -166,7 +166,7 @@
     =========================== */
     document.getElementById('searchInput').addEventListener('input', function () {
         const filter = this.value.toLowerCase();
-        const items = document.querySelectorAll('#reviewItems li');
+        const items = document.querySelectorAll('#reviewList ul li');
 
         items.forEach(item => {
             const text = item.textContent.toLowerCase();
