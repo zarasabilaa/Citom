@@ -123,7 +123,7 @@
             <p class="text-gray-700 mt-2">${message}</p>
         `;
 
-        reviewList.prepend(listItem);
+        reviewList.appendChild(listItem);
         document.getElementById('whatsappForm').reset();
         showToast("Review berhasil ditambahkan!");
     });
