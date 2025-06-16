@@ -97,11 +97,13 @@
             cartItemsList.appendChild(li);
         });
 
+
         // Update total & badge jumlah
         cartCount.textContent = totalQty;
         cartCount.classList.toggle('hidden', totalQty === 0);
         cartTotal.textContent = `Rp${totalPrice.toLocaleString('id-ID')}`;
 
+        
         // Buat link WhatsApp
         const message = `Halo, saya ingin memesan:\n\n${waMessage.join('\n')}\n\nTotal: Rp${totalPrice.toLocaleString('id-ID')}`;
         const encodedMessage = encodeURIComponent(message);
@@ -109,7 +111,7 @@
         checkoutBtn.target = "_blank";
     }
 
-    
+
     /* ===========================
         Kirim Review
     =========================== */

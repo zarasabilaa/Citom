@@ -9,7 +9,6 @@
   border-radius: 50%;
 }
 
-
   @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -36,6 +35,7 @@
         }
     }
 
+    
     @keyframes toastOut {
         from {
             opacity: 1;
