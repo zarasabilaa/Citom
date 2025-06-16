@@ -48,7 +48,7 @@
         });
     });
 
-    
+
     /* ===========================
         Update Tampilan Keranjang
     =========================== */
@@ -77,6 +77,7 @@
                     <button class='increaseQty bg-green-500 text-white w-6 h-6 rounded' data-name='${name}'>+</button>
                 </div>
             `;
+
 
             // Tombol -/+
             li.querySelector('.decreaseQty').addEventListener('click', () => {
@@ -108,6 +109,7 @@
         checkoutBtn.target = "_blank";
     }
 
+    
     /* ===========================
         Kirim Review
     =========================== */
