@@ -11,6 +11,7 @@
     const toast = document.getElementById('toast');
     const phoneNumber = '628123456789';
 
+
     /* ===========================
         Modal Keranjang
     =========================== */
@@ -47,6 +48,7 @@
         });
     });
 
+    
     /* ===========================
         Update Tampilan Keranjang
     =========================== */
