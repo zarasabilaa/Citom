@@ -50,7 +50,7 @@
 
 
     /* ===========================
-        Update Tampilan Keranjang
+         Tampilan Keranjang
     =========================== */
     function updateCartDisplay() {
         cartItemsList.innerHTML = '';
